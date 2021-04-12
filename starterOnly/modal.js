@@ -15,6 +15,7 @@ const closeBtn = document.querySelectorAll(".close");
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal event
+// close modal event
 closeBtn.addEventListener("click", closeModal);
 
 /** FUNCTIONS
