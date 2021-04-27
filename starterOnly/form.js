@@ -2,30 +2,65 @@
  * ---------------------------------------
  * ---------------------------------------
  */
-let forn = document.getElementsByTagName('form')[0];
-let firstNameInput = document.getElementById('first');
-let lastNameInput = document.getElementById('last');
-let emailInput = document.getElementById('email');
-let birthdateInput = document.getElementById('birthdate');
-let quantityInput = document.getElementById('quantity');
-
-
-disableSubmitBtn();
-enableSubmitBtn();
+let form = document.getElementsByTagName('form')[0];
+let fields = ['firstName', 'lastName', 'email', 'birthdate', 'quantity', 'location', 'checkbox'];
+let messages = {
+    firstName: "Le prénom n'est pas valide.",
+    lastName: "Le nom n'est pas valide.",
+    email: "L'email n'est pas valide.",
+    birthdate: "La date de naissance n'est pas valide.",
+	quantity: "La quantitée n'est pas valide.",
+	location: "Choisissez une ville.",
+	checkbox: "Merci d'accepter les conditions d'utilisations.",
+}
 
 /** EVENTS
  * ---------------------------------------
  * ---------------------------------------
  */
-form.addEventListener('keydown', validate);
-
-firstNameInput.addEventListener()
-
+disableSubmitBtn();
+listenForFormChange();
+listenForEachFieldChange();
 
 /** FUNCTIONS
  * ---------------------------------------
  * ---------------------------------------
  */
+// Rétablir le bouton quand le formulaire est valide
+function listenForFormChange() {
+    form.addEventListener('keydown', function() {
+        disableSubmitBtn();
+        if (isFormValid()) {
+            enableSubmitBtn();
+        }
+    });
+}
+
+function isFormValid() {
+    let isValid = true;
+    fields.forEach(field => {
+        let functionName = 'is' + capitalize(field) + 'Valid';
+        let value = document.getElementById(field);
+        if (!window[functionName](value)) {
+            isValid = false;
+        }
+    })
+    return isValid;
+}
+
+function listenForEachFieldChange() {
+    fields.forEach(field => {
+        let input = document.getElementById(field);
+        input.addEventListener('keydown', function() {
+            hideError(field);
+            let functionName = 'is' + capitalize(field) + 'Valid';
+            if (!window[functionName](input.value)) {
+                showError(field, messages[field]);
+            }
+        })
+    })
+}
+
 function validate() {
     if (!isNameValid(firstName.value)){
         return false
@@ -49,7 +84,24 @@ function enableSubmitBtn() {
     submitBtn.style.cursor = "pointer";
 }
 
+function showError(field, message) {
+    if (isFormValid) {
+        
+    }
+}
+
+function hideError(field) {
+    // valeur correct, retirer
+}
+
+//Majuscule
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
 function isNameValid(name){
+    name = name.trim(' ');
     if (name.length < 2) {
         return false;
     }
