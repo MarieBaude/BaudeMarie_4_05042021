@@ -3,21 +3,23 @@
  * ---------------------------------------
  */
 let forn = document.getElementsByTagName('form')[0];
-let firstNameImput = document.getElementById('first');
-let lastNameImput = document.getElementById('last');
-let emailImput = document.getElementById('email');
-let birthdateImput = document.getElementById('birthdate');
-let quantityImput = document.getElementById('quantity');
+let firstNameInput = document.getElementById('first');
+let lastNameInput = document.getElementById('last');
+let emailInput = document.getElementById('email');
+let birthdateInput = document.getElementById('birthdate');
+let quantityInput = document.getElementById('quantity');
 
 
 disableSubmitBtn();
-//enableSubmitBtn();
+enableSubmitBtn();
 
 /** EVENTS
  * ---------------------------------------
  * ---------------------------------------
  */
-forn.addEventListener('submit', validate);
+form.addEventListener('keydown', validate);
+
+firstNameInput.addEventListener()
 
 
 /** FUNCTIONS
@@ -48,10 +50,10 @@ function enableSubmitBtn() {
 }
 
 function isNameValid(name){
-    if (name.lenght < 2) {
+    if (name.length < 2) {
         return false;
     }
-    if (name.lenght > 20) {
+    if (name.length > 20) {
         return false;
     }
     return true;
