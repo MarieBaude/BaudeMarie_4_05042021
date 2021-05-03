@@ -2,13 +2,16 @@
 -----------------------------
 */
 const form = document.getElementsByTagName('form')[0];
-const firstNameImput = document.getElementById('firstName');
-const lastNameImput = document.getElementById('lastName');
-const emailImput = document.getElementById('email');
-const birthdateImput = document.getElementById('birthdate');
-const quantityImput = document.getElementById('quantity');
+const firstNameInput = document.getElementById('firstName');
+const lastNameInput = document.getElementById('lastName');
+const emailInput = document.getElementById('email');
+const birthdateInput = document.getElementById('birthdate');
+const quantityInput = document.getElementById('quantity');
+const locationInput = document.getElementById('location');
+const checkboxInput = document.getElementById('checkbox1');
 
-const fields = ['firstName', 'lastName', 'email'];
+
+const fields = ['firstName', 'lastName', 'email'/*, 'birthdate', 'quantity', 'location', 'checkbox1'*/];
 
 /*  
 -----------------------------
@@ -57,6 +60,14 @@ function isLastNameValid(name) {
     return true;
 }*/
 
+/*function isBirthdateValid() {
+    let birthdateformat = ^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$;
+    if () {
+        return false;
+    }
+    return true;
+}*/
+
 function listenForFormChange() {
     fields.forEach(field => {
         let input = document.getElementById(field);
@@ -74,8 +85,8 @@ function listenForFormChange() {
 
 function isFormValid() {
     let isValid = true;
-    if (isFirstNameValid(firstNameImput.value) &&
-        isLastNameValid(firstNameImput.value)) { 
+    if (isFirstNameValid(firstNameInput.value) &&
+        isLastNameValid(firstNameInput.value)) { 
         isValid = false;
     }
     return isValid;
