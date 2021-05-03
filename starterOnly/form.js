@@ -10,7 +10,9 @@ const quantityImput = document.getElementById('quantity');
 
 const fields = ['firstName', 'lastName', 'email'];
 
-
+/*  
+-----------------------------
+*/
 disableSubmitBtn();
 listenForFormChange();
 
@@ -40,11 +42,20 @@ function isFirstNameValid(name) {
 }
 
 function isLastNameValid(name) {
+    name = name.trim(' ');
     if (name.length < 1) {
         return false;
     }
     return true;
 }
+
+/*function isMailValid(mail) {
+    let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (mail.value.match(mailformat)) {
+        return false;
+    }
+    return true;
+}*/
 
 function listenForFormChange() {
     fields.forEach(field => {
@@ -70,12 +81,12 @@ function isFormValid() {
     return isValid;
 }
 
-function showError(field) {
-    let parent = field.closest('div');
-    parent.setAttribute('data-error-visible', true)
-}
-
 function hideError(field) {
     let parent = field.closest('div');
     parent.setAttribute('date-error-visible', false);
+}
+
+function showError(field) {
+    let parent = field.closest('div');
+    parent.setAttribute('data-error-visible', true)
 }
