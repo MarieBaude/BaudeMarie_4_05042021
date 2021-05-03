@@ -10,9 +10,7 @@ const quantityImput = document.getElementById('quantity');
 
 const fields = ['firstName', 'lastName', 'email'];
 
-/* EVENEMENTS 
------------------------------
-*/
+
 disableSubmitBtn();
 listenForFormChange();
 
