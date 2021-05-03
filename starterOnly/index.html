@@ -63,7 +63,7 @@
               onsubmit="return validate();"
             >
               <div
-                class="formData">
+                class="formData" data-error="Le prénom n'est pas valide.">
                 <label for="first">Prénom</label><br>
                 <input
                   class="text-control"
@@ -75,7 +75,7 @@
                 <p id="error-fistName" class="error"></p>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Le nom n'est pas valide.">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -83,7 +83,6 @@
                   id="lastName"
                   name="last"
                 /><br>
-                <p id="error-lastName" class="error"></p>
               </div>
               <div
                 class="formData">
@@ -94,7 +93,6 @@
                   id="email"
                   name="email"
                 /><br>
-                <p id="error-lastName" class="error"></p>
               </div>
               <div
                 class="formData">
