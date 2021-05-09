@@ -10,7 +10,6 @@ const quantityInput = document.getElementById('quantity');
 const locationInput = document.getElementById('location');
 const checkboxInput = document.getElementById('checkbox1');
 
-
 const fields = ['firstName', 'lastName', 'email'/*, 'birthdate', 'quantity', 'location', 'checkbox1'*/];
 
 /*  
@@ -38,7 +37,7 @@ function enableSubmitBtn() {
 
 function isFirstNameValid(name) {
     name = name.trim(' ');
-    if (name.length < 1) {
+    if (name.length < 2) {
         return false;
     }
     return true;
@@ -46,22 +45,22 @@ function isFirstNameValid(name) {
 
 function isLastNameValid(name) {
     name = name.trim(' ');
-    if (name.length < 1) {
+    if (name.length < 2) {
         return false;
     }
     return true;
 }
 
-/*function isMailValid(mail) {
-    let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (mail.value.match(mailformat)) {
+function isEmailValid(mail) {
+    const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (mail.match(mailformat)) {
         return false;
     }
     return true;
-}*/
+}
 
 /*function isBirthdateValid() {
-    let birthdateformat = ^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$;
+    const birthdateformat = ^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$;
     if () {
         return false;
     }
@@ -72,8 +71,10 @@ function listenForFormChange() {
     fields.forEach(field => {
         let input = document.getElementById(field);
         input.addEventListener('keydown', function () {
+            let input = document.getElementById(field);
             hideError(field);
-            if (!isFirstNameValid(field.value)) {
+            let validator = formatValidationName(field)
+            if (!window[validator](input.value)) {
                 showError(field);
             }
             if (isFormValid()) {
@@ -84,20 +85,28 @@ function listenForFormChange() {
 }
 
 function isFormValid() {
-    let isValid = true;
+    let isValid = false;
     if (isFirstNameValid(firstNameInput.value) &&
-        isLastNameValid(firstNameInput.value)) { 
-        isValid = false;
+        isLastNameValid(lastNameInput.value) &&
+        isEmailValid(emailInput.value)) { 
+        isValid = true;
     }
     return isValid;
 }
 
 function hideError(field) {
-    let parent = field.closest('div');
-    parent.setAttribute('date-error-visible', false);
+    let input = document.getElementById(field);
+    let parent = input.closest('div');
+    parent.dateErrorVisible = false;
 }
 
 function showError(field) {
-    let parent = field.closest('div');
-    parent.setAttribute('data-error-visible', true)
+    let input = document.getElementById(field);
+    let parent = input.closest('div');
+    parent.dateErrorVisible = true;
+}
+
+function formatValidationName (field) {
+    field = field.charAt(0).toUpperCase() + field.slice(1);
+    return 'is' + field + 'Valid';
 }
