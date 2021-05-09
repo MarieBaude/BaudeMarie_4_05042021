@@ -64,7 +64,7 @@
             >
               <div
                 class="formData" data-error="Le prénom n'est pas valide." data-error-visible="false">
-                <label for="first">Prénom</label><br>
+                <label for="firstName">Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
@@ -72,10 +72,9 @@
                   name="firstName"
                   minlength="2"
                 /><br>
-                <p id="error-fistName" class="error"></p>
               </div>
               <div
-                class="formData" data-error="Le nom n'est pas valide.">
+                class="formData" data-error="Le nom n'est pas valide." data-error-visible="false">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -86,7 +85,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Le mail n'est pas valide.">
+                class="formData" data-error="Le mail n'est pas valide." data-error-visible="false">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -96,7 +95,7 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="La date de naissance n'est pas valide." data-error-visible="false">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -106,7 +105,7 @@
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Entrez un chiffre, même 0." data-error-visible="false">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input 
                   type="number" 
@@ -119,7 +118,7 @@
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
-                class="formData">
+                class="formData" data-error="Sélectionner une ville." data-error-visible="false">
                 <input
                   class="checkbox-input"
                   type="radio"

@@ -7,10 +7,10 @@ const lastNameInput = document.getElementById('lastName');
 const emailInput = document.getElementById('email');
 const birthdateInput = document.getElementById('birthdate');
 const quantityInput = document.getElementById('quantity');
-const locationInput = document.getElementById('location');
+const locationInput = document.querySelector("input[type=radio]");
 const checkboxInput = document.getElementById('checkbox1');
 
-const fields = ['firstName', 'lastName', 'email'/*, 'birthdate', 'quantity', 'location', 'checkbox1'*/];
+const fields = ['firstName', 'lastName', 'email', 'quantity'/*, 'birthdate', 'location', 'checkbox1'*/];
 
 /*  
 -----------------------------
@@ -53,26 +53,43 @@ function isLastNameValid(name) {
 
 function isEmailValid(mail) {
     const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (mail.match(mailformat)) {
+    if (mail.length < 6) {
+        return false;
+    }if (mail.match(mailformat)) {
         return false;
     }
     return true;
 }
 
-/*function isBirthdateValid() {
-    const birthdateformat = ^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$;
-    if () {
+/*function isBirthdateValid(date) {
+    const birthdateformat = /^(\d{2}\-\d{2}\-\d{4})|([0-9]{2}\/[0-9]{2}\/[0-9]{4}$)/;
+    if (date.) {
         return false;
     }
     return true;
 }*/
 
+function isQuantityValid(num) {
+    if (num.length < 1) {
+        return false;
+    }
+    return true;
+}
+
+function isLocationValid(input[type=radio]:checked) {
+    if (("input[type=radio]:checked").length > 0) {
+        return false;
+    }
+    return true;
+}
+
 function listenForFormChange() {
     fields.forEach(field => {
         let input = document.getElementById(field);
-        input.addEventListener('keydown', function () {
+        input.addEventListener('input', function () {
             let input = document.getElementById(field);
             hideError(field);
+            disableSubmitBtn();
             let validator = formatValidationName(field)
             if (!window[validator](input.value)) {
                 showError(field);
@@ -88,7 +105,9 @@ function isFormValid() {
     let isValid = false;
     if (isFirstNameValid(firstNameInput.value) &&
         isLastNameValid(lastNameInput.value) &&
-        isEmailValid(emailInput.value)) { 
+        isEmailValid(emailInput.value) &&
+        isQuantityValid(quantityInput.value) &&
+        isLocationValid(locationInput.value)) {
         isValid = true;
     }
     return isValid;
