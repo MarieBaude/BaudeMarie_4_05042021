@@ -137,7 +137,7 @@ function showError(field) {
     let input = document.getElementById(field);
     let parent = input.closest('div');
     parent.dataErrorVisible = true;
-    //console.log(dataErrorVisible);
+    console.log(dataErrorVisible);
 }
 
 function formatValidationName (field) {
