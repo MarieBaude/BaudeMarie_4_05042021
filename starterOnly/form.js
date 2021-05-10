@@ -7,7 +7,8 @@ const lastNameInput = document.getElementById('lastName');
 const emailInput = document.getElementById('email');
 const birthdateInput = document.getElementById('birthdate');
 const quantityInput = document.getElementById('quantity');
-//const locationInput = document.getElementById('');
+const locationInputs = document.querySelectorAll('[name=location]');
+let locationValid = false;
 //const checkbox1Input = document.getElementById('checkbox1');
 //const checkbox2Input = document.getElementById('checkbox2');
 
@@ -73,7 +74,6 @@ function isEmailValid(mail) {
 
 function isBirthdateValid(date) {
     const dateformat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-    console.log(dateformat)
     if (!dateformat.test(date) || date == "") {
         return false;
     }
@@ -87,8 +87,20 @@ function isQuantityValid(num) {
     return true;
 }
 
+function listenForLocationChange() {
+    for (let locationInput of locationInputs) {
+        locationInput.addEventListener('click', (e) => {
+            locationValid = true;
+            disableSubmitBtn();
+            if (isFormValid()) {
+                enableSubmitBtn();
+            }
+        })
+    }
+}
 
 function listenForFormChange() {
+    listenForLocationChange();
     fields.forEach(field => {
         let input = document.getElementById(field);
         input.addEventListener('input', function () {
@@ -112,7 +124,8 @@ function isFormValid() {
         && isLastNameValid(lastNameInput.value) 
         && isEmailValid(emailInput.value) 
         && isBirthdateValid(birthdateInput.value) 
-        && isQuantityValid(quantityInput.value) 
+        && isQuantityValid(quantityInput.value)
+        && locationValid
         ){
         isValid = true;
     }
