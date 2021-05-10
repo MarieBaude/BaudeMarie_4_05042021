@@ -7,10 +7,20 @@ const lastNameInput = document.getElementById('lastName');
 const emailInput = document.getElementById('email');
 const birthdateInput = document.getElementById('birthdate');
 const quantityInput = document.getElementById('quantity');
-const locationInput = document.querySelector("input[type=radio]");
-const checkboxInput = document.getElementById('checkbox1');
+//const locationInput = document.getElementById('');
+//const checkbox1Input = document.getElementById('checkbox1');
+//const checkbox2Input = document.getElementById('checkbox2');
 
-const fields = ['firstName', 'lastName', 'email', 'quantity'/*, 'birthdate', 'location', 'checkbox1'*/];
+const fields = [
+    'firstName', 
+    'lastName', 
+    'email', 
+    'birthdate',
+    'quantity',
+    //'',
+    //'checkbox1',
+    //'checkbox2'
+];
 
 /*  
 -----------------------------
@@ -52,7 +62,7 @@ function isLastNameValid(name) {
 }
 
 function isEmailValid(mail) {
-    const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const mailformat = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
     if (mail.length < 6) {
         return false;
     }if (mail.match(mailformat)) {
@@ -61,13 +71,15 @@ function isEmailValid(mail) {
     return true;
 }
 
-/*function isBirthdateValid(date) {
-    const birthdateformat = /^(\d{2}\-\d{2}\-\d{4})|([0-9]{2}\/[0-9]{2}\/[0-9]{4}$)/;
-    if (date.) {
+function isBirthdateValid(date) {
+    const dateformat = /^(\d{2}\-\d{2}\-\d{4})|([0-9]{2}\/[0-9]{2}\/[0-9]{4}$)/;
+    if (date.match(dateformat)) {
         return false;
-    }
+    }if (date.length < 1) {
+        return false;
+    } 
     return true;
-}*/
+}
 
 function isQuantityValid(num) {
     if (num.length < 1) {
@@ -76,12 +88,12 @@ function isQuantityValid(num) {
     return true;
 }
 
-function isLocationValid(input[type=radio]:checked) {
-    if (("input[type=radio]:checked").length > 0) {
+/*function isLocationValid() {
+    if () {
         return false;
     }
     return true;
-}
+}*/
 
 function listenForFormChange() {
     fields.forEach(field => {
@@ -90,7 +102,7 @@ function listenForFormChange() {
             let input = document.getElementById(field);
             hideError(field);
             disableSubmitBtn();
-            let validator = formatValidationName(field)
+            let validator = formatValidationName(field);
             if (!window[validator](input.value)) {
                 showError(field);
             }
@@ -103,11 +115,13 @@ function listenForFormChange() {
 
 function isFormValid() {
     let isValid = false;
-    if (isFirstNameValid(firstNameInput.value) &&
-        isLastNameValid(lastNameInput.value) &&
-        isEmailValid(emailInput.value) &&
-        isQuantityValid(quantityInput.value) &&
-        isLocationValid(locationInput.value)) {
+    if (isFirstNameValid(firstNameInput.value) 
+        && isLastNameValid(lastNameInput.value) 
+        && isEmailValid(emailInput.value) 
+        && isBirthdateValid(birthdateInput.value) 
+        && isQuantityValid(quantityInput.value) 
+        //&& isLocationValid(locationInput.value)
+        ){
         isValid = true;
     }
     return isValid;
@@ -116,13 +130,14 @@ function isFormValid() {
 function hideError(field) {
     let input = document.getElementById(field);
     let parent = input.closest('div');
-    parent.dateErrorVisible = false;
+    parent.dataErrorVisible = false;
 }
 
 function showError(field) {
     let input = document.getElementById(field);
     let parent = input.closest('div');
-    parent.dateErrorVisible = true;
+    parent.dataErrorVisible = true;
+    //console.log(dataErrorVisible);
 }
 
 function formatValidationName (field) {
