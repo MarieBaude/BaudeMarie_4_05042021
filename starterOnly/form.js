@@ -17,7 +17,6 @@ const fields = [
     'email', 
     'birthdate',
     'quantity',
-    //'',
     //'checkbox1',
     //'checkbox2'
 ];
@@ -65,19 +64,19 @@ function isEmailValid(mail) {
     const mailformat = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
     if (mail.length < 6) {
         return false;
-    }if (mail.match(mailformat)) {
+    }
+    if (!mail.match(mailformat)) {
         return false;
     }
     return true;
 }
 
 function isBirthdateValid(date) {
-    const dateformat = /^(\d{2}\-\d{2}\-\d{4})|([0-9]{2}\/[0-9]{2}\/[0-9]{4}$)/;
-    if (date.match(dateformat)) {
+    const dateformat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+    console.log(dateformat)
+    if (!dateformat.test(date) || date == "") {
         return false;
-    }if (date.length < 1) {
-        return false;
-    } 
+    }
     return true;
 }
 
@@ -88,12 +87,6 @@ function isQuantityValid(num) {
     return true;
 }
 
-/*function isLocationValid() {
-    if () {
-        return false;
-    }
-    return true;
-}*/
 
 function listenForFormChange() {
     fields.forEach(field => {
@@ -120,7 +113,6 @@ function isFormValid() {
         && isEmailValid(emailInput.value) 
         && isBirthdateValid(birthdateInput.value) 
         && isQuantityValid(quantityInput.value) 
-        //&& isLocationValid(locationInput.value)
         ){
         isValid = true;
     }
@@ -130,14 +122,13 @@ function isFormValid() {
 function hideError(field) {
     let input = document.getElementById(field);
     let parent = input.closest('div');
-    parent.dataErrorVisible = false;
+    parent.setAttribute('data-error-visible', false);
 }
 
 function showError(field) {
     let input = document.getElementById(field);
     let parent = input.closest('div');
-    parent.dataErrorVisible = true;
-    console.log(dataErrorVisible);
+    parent.setAttribute('data-error-visible', true);
 }
 
 function formatValidationName (field) {
