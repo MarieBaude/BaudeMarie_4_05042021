@@ -63,7 +63,7 @@
               onsubmit="return validate();"
             >
               <div
-                class="formData" data-error="Le prénom n'est pas valide." data-error-visible="false">
+                class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom." data-error-visible="false">
                 <label for="firstName">Prénom</label><br>
                 <input
                   class="text-control"
@@ -74,7 +74,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Le nom n'est pas valide." data-error-visible="false">
+                class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom." data-error-visible="false">
                 <label for="last">Nom</label><br>
                 <input
                   class="text-control"
@@ -85,7 +85,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Le mail n'est pas valide." data-error-visible="false">
+                class="formData" data-error="Veuillez entrer une adresse mail valide." data-error-visible="false">
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
@@ -95,7 +95,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="La date de naissance n'est pas valide." data-error-visible="false">
+                class="formData" data-error="Vous devez entrer votre date de naissance." data-error-visible="false">
                 <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
@@ -105,7 +105,7 @@
                 /><br>
               </div>
               <div
-                class="formData" data-error="Entrez un chiffre, même 0." data-error-visible="false">
+                class="formData" data-error="Vous devez entrez un chiffre." data-error-visible="false">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input 
                   type="number" 
@@ -118,7 +118,7 @@
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
-                class="formData" data-error="Sélectionner une ville." data-error-visible="false">
+                class="formData" data-error="Vous devez choisir une option." data-error-visible="false">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -211,6 +211,7 @@
                 type="submit"
                 class="button"
                 value="C'est parti"
+                onClick='confirmValidationForm ()'
               />
             </form>
           </div>

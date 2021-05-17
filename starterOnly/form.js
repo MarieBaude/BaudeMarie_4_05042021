@@ -92,7 +92,6 @@ function isCheckbox1Valid() {
       return false;
 }
 
-
 function listenForLocationChange() {
     for (let locationInput of locationInputs) {
         locationInput.addEventListener('click', (e) => {
@@ -137,6 +136,10 @@ function isFormValid() {
         isValid = true;
     }
     return isValid;
+}
+
+function confirmValidationForm () {
+    alert("Merci ! Votre réservation a été reçue.");
 }
 
 function hideError(field) {
