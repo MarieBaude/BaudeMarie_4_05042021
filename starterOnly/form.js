@@ -9,8 +9,7 @@ const birthdateInput = document.getElementById('birthdate');
 const quantityInput = document.getElementById('quantity');
 const locationInputs = document.querySelectorAll('[name=location]');
 let locationValid = false;
-//const checkbox1Input = document.getElementById('checkbox1');
-//const checkbox2Input = document.getElementById('checkbox2');
+const checkboxInput = document.getElementById('checkbox1');
 
 const fields = [
     'firstName', 
@@ -18,8 +17,7 @@ const fields = [
     'email', 
     'birthdate',
     'quantity',
-    //'checkbox1',
-    //'checkbox2'
+    'checkbox1'
 ];
 
 /*  
@@ -28,7 +26,7 @@ const fields = [
 disableSubmitBtn();
 listenForFormChange();
 
-/* FONCTIONS 
+/* FUNCTIONS 
 -----------------------------
 */
 function disableSubmitBtn() {
@@ -87,6 +85,14 @@ function isQuantityValid(num) {
     return true;
 }
 
+function isCheckbox1Valid() {
+    if(checkboxInput.checked == true) {
+        return true;
+      }
+      return false;
+}
+
+
 function listenForLocationChange() {
     for (let locationInput of locationInputs) {
         locationInput.addEventListener('click', (e) => {
@@ -126,6 +132,7 @@ function isFormValid() {
         && isBirthdateValid(birthdateInput.value) 
         && isQuantityValid(quantityInput.value)
         && locationValid
+        && isCheckbox1Valid(checkboxInput.value)
         ){
         isValid = true;
     }
