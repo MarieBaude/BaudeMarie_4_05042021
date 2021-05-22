@@ -105,11 +105,25 @@ function listenForLocationChange() {
 }
 
 function listenForFormChange() {
+    form.addEventListener('input', () => {
+            hideError('location');
+            let beforeFieldsValid = true;
+            ['firstName', 'lastName', 'email', 'birthdate', 'quantity'].forEach(field => {
+                let value = document.getElementById(field).value;
+                let validator = formatValidationName(field);
+                if (!window[validator](value)) {
+                    beforeFieldsValid = false;
+                }
+                })
+                if (beforeFieldsValid && !locationValid) {
+                    showError('location');
+                }
+    })
+
     listenForLocationChange();
     fields.forEach(field => {
         let input = document.getElementById(field);
         input.addEventListener('input', function () {
-            //let input = document.getElementById(field);
             hideError(field);
             disableSubmitBtn();
             let validator = formatValidationName(field);
@@ -144,12 +158,18 @@ function confirmValidationForm () {
 
 function hideError(field) {
     let input = document.getElementById(field);
+    if (!input) {
+        input = document.querySelector("input[name=location]");
+    }
     let parent = input.closest('div');
     parent.setAttribute('data-error-visible', false);
 }
 
 function showError(field) {
     let input = document.getElementById(field);
+    if (!input) {
+        input = document.querySelector("input[name=location]");
+    }
     let parent = input.closest('div');
     parent.setAttribute('data-error-visible', true);
 }
