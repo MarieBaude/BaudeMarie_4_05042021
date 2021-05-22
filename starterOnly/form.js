@@ -20,7 +20,7 @@ const fields = [
     'checkbox1'
 ];
 
-/*  
+/*  DISONER
 -----------------------------
 */
 disableSubmitBtn();
@@ -86,7 +86,7 @@ function isQuantityValid(num) {
 }
 
 function isCheckbox1Valid() {
-    if(checkboxInput.checked == true) {
+    if (checkboxInput.checked == true) {
         return true;
       }
       return false;
@@ -109,7 +109,7 @@ function listenForFormChange() {
     fields.forEach(field => {
         let input = document.getElementById(field);
         input.addEventListener('input', function () {
-            let input = document.getElementById(field);
+            //let input = document.getElementById(field);
             hideError(field);
             disableSubmitBtn();
             let validator = formatValidationName(field);
