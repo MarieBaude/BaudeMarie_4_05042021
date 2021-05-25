@@ -4,15 +4,16 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+const closeBtn = document.querySelectorAll(".close");
+const validModalBtn = document.querySelector(".btn-validate-modal");
 
 
 /* EVENTS 
 -----------------------------
 */
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-closeBtn.addEventListener("click", closeModal);
-
+closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+validModalBtn.addEventListener("click", closeModal);
 
 /* FUNCTIONS 
 -----------------------------
@@ -24,6 +25,7 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
+
 // nav responsive
 function editNav() {
   var x = document.getElementById("myTopnav");
