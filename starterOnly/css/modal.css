@@ -209,7 +209,7 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: #e54858;
   display: block;
   margin-top: 7px;
@@ -472,6 +472,35 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/*successful submission confirmation message*/
+.validate-modal {
+  display: none;
+  color: white;
+  z-index: 3;
+}
+
+.btn-validate-modal {
+  background-color: #fe142f;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 12px 70px;
+}
+
+.modal-confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 500px;
+}
+
+.modal-confirm > span {
+  text-align: center;
+  
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;

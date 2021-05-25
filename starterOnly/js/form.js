@@ -20,7 +20,7 @@ const fields = [
     'checkbox1'
 ];
 
-/*  DISONER
+/* 
 -----------------------------
 */
 disableSubmitBtn();
@@ -29,6 +29,11 @@ listenForFormChange();
 /* FUNCTIONS 
 -----------------------------
 */
+function confirmValidationForm() {
+    let validateModal = document.querySelector('.validate-modal');
+    validateModal.style.display = "block";
+}
+
 function disableSubmitBtn() {
     let submitBtn = document.querySelector('.btn-submit');
     submitBtn.setAttribute('disabled', 'disabled');
@@ -152,10 +157,6 @@ function isFormValid() {
     return isValid;
 }
 
-function confirmValidationForm () {
-    alert("Merci ! Votre réservation a été reçue.");
-}
-
 function hideError(field) {
     let input = document.getElementById(field);
     if (!input) {
@@ -174,7 +175,10 @@ function showError(field) {
     parent.setAttribute('data-error-visible', true);
 }
 
-function formatValidationName (field) {
+function formatValidationName(field) {
     field = field.charAt(0).toUpperCase() + field.slice(1);
     return 'is' + field + 'Valid';
 }
+
+
+
