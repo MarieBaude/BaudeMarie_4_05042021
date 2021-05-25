@@ -5,7 +5,6 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelectorAll(".close");
-const validModalBtn = document.querySelector(".btn-validate-modal");
 
 
 /* EVENTS 
@@ -13,7 +12,6 @@ const validModalBtn = document.querySelector(".btn-validate-modal");
 */
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-validModalBtn.addEventListener("click", closeModal);
 
 /* FUNCTIONS 
 -----------------------------

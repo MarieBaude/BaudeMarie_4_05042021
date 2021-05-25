@@ -30,7 +30,7 @@ listenForFormChange();
 -----------------------------
 */
 function confirmValidationForm() {
-    let validateModal = document.querySelector('.validate-modal');
+    const validateModal = document.querySelector('.validate-modal');
     validateModal.style.display = "block";
 }
 
