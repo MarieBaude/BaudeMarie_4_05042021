@@ -16,10 +16,6 @@ closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 /* FUNCTIONS 
 -----------------------------
 */
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
 function closeModal() {
   modalbg.style.display = "none";
 }
@@ -33,3 +29,8 @@ function editNav() {
     x.className = "topnav";
   }
 }
+
+function launchModal() {
+  modalbg.style.display = "block";
+}
+

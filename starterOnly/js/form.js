@@ -48,20 +48,33 @@ function enableSubmitBtn() {
     submitBtn.style.cursor = "pointer";
 }
 
-function isFirstNameValid(name) {
-    name = name.trim(' ');
-    if (name.length < 2) {
+function formatValidationName(field) {
+    field = field.charAt(0).toUpperCase() + field.slice(1);
+    return 'is' + field + 'Valid';
+}
+
+function hideError(field) {
+    let input = document.getElementById(field);
+    if (!input) {
+        input = document.querySelector("input[name=location]");
+    }
+    let parent = input.closest('div');
+    parent.setAttribute('data-error-visible', false);
+}
+
+function isBirthdateValid(date) {
+    const dateformat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+    if (!dateformat.test(date) || date == "") {
         return false;
     }
     return true;
 }
 
-function isLastNameValid(name) {
-    name = name.trim(' ');
-    if (name.length < 2) {
-        return false;
-    }
-    return true;
+function isCheckbox1Valid() {
+    if (checkboxInput.checked == true) {
+        return true;
+      }
+      return false;
 }
 
 function isEmailValid(mail) {
@@ -75,9 +88,32 @@ function isEmailValid(mail) {
     return true;
 }
 
-function isBirthdateValid(date) {
-    const dateformat = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
-    if (!dateformat.test(date) || date == "") {
+function isFirstNameValid(name) {
+    name = name.trim(' ');
+    if (name.length < 2) {
+        return false;
+    }
+    return true;
+}
+
+function isFormValid() {
+    let isValid = false;
+    if (isFirstNameValid(firstNameInput.value) 
+        && isLastNameValid(lastNameInput.value) 
+        && isEmailValid(emailInput.value) 
+        && isBirthdateValid(birthdateInput.value) 
+        && isQuantityValid(quantityInput.value)
+        && locationValid
+        && isCheckbox1Valid(checkboxInput.value)
+        ){
+        isValid = true;
+    }
+    return isValid;
+}
+
+function isLastNameValid(name) {
+    name = name.trim(' ');
+    if (name.length < 2) {
         return false;
     }
     return true;
@@ -88,25 +124,6 @@ function isQuantityValid(num) {
         return false;
     }
     return true;
-}
-
-function isCheckbox1Valid() {
-    if (checkboxInput.checked == true) {
-        return true;
-      }
-      return false;
-}
-
-function listenForLocationChange() {
-    for (let locationInput of locationInputs) {
-        locationInput.addEventListener('click', (e) => {
-            locationValid = true;
-            disableSubmitBtn();
-            if (isFormValid()) {
-                enableSubmitBtn();
-            }
-        })
-    }
 }
 
 function listenForFormChange() {
@@ -142,28 +159,16 @@ function listenForFormChange() {
     })
 }
 
-function isFormValid() {
-    let isValid = false;
-    if (isFirstNameValid(firstNameInput.value) 
-        && isLastNameValid(lastNameInput.value) 
-        && isEmailValid(emailInput.value) 
-        && isBirthdateValid(birthdateInput.value) 
-        && isQuantityValid(quantityInput.value)
-        && locationValid
-        && isCheckbox1Valid(checkboxInput.value)
-        ){
-        isValid = true;
+function listenForLocationChange() {
+    for (let locationInput of locationInputs) {
+        locationInput.addEventListener('click', (e) => {
+            locationValid = true;
+            disableSubmitBtn();
+            if (isFormValid()) {
+                enableSubmitBtn();
+            }
+        })
     }
-    return isValid;
-}
-
-function hideError(field) {
-    let input = document.getElementById(field);
-    if (!input) {
-        input = document.querySelector("input[name=location]");
-    }
-    let parent = input.closest('div');
-    parent.setAttribute('data-error-visible', false);
 }
 
 function showError(field) {
@@ -175,10 +180,6 @@ function showError(field) {
     parent.setAttribute('data-error-visible', true);
 }
 
-function formatValidationName(field) {
-    field = field.charAt(0).toUpperCase() + field.slice(1);
-    return 'is' + field + 'Valid';
-}
 
 
 
