@@ -502,6 +502,12 @@ footer {
   
 }
 
+@media screen and (max-width: 990px) {
+  .hero-headline {
+    font-size: 4rem;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -525,6 +531,7 @@ footer {
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+    max-width: 90%;
   }
   .hero-img img {
     border-radius: 10px;
